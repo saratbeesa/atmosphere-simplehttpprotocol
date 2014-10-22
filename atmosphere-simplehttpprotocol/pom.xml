@@ -141,7 +141,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>gossipserver</finalName>
+		<finalName>atmosphere-protocol-sample</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>

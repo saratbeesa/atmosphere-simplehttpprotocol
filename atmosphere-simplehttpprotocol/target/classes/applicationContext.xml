@@ -20,78 +20,9 @@
 			http://www.springframework.org/schema/context/spring-context.xsd">
 			
 	<context:annotation-config/>
-	<context:component-scan base-package="com.mportal.gossip.*" />
-	
-	<!-- load property files -->
-	<bean
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location">
-			<value>classpath:messages.properties</value>
-		</property>
-	</bean>
+	<context:component-scan base-package="org.beesa.*" />
 	
 	<!-- REST Beans initialization -->
-	<bean id="conversationRESTService" class="com.mportal.gossip.rest.services.ConversationRESTService"></bean>
-	<bean id="gossipHandlerRootResource" class="com.mportal.gossip.rest.services.GossipHandler"></bean>
-	<bean id="moderatorResource" class="com.mportal.gossip.rest.services.ModeratorResource"></bean>
-	<bean id="participantResource" class="com.mportal.gossip.rest.services.ParticipantResource"></bean>
-	<bean id="sessionResource" class="com.mportal.gossip.rest.services.SessionResource"></bean>
-	<bean id="loginresponseWriter" class="com.mportal.gossip.rest.mbw.LoginResponseMessageBodyWriter" scope="singleton"></bean>
-	<bean id="conversationResponseWriter" class="com.mportal.gossip.rest.mbw.ConversationResponseMessageBodyWriter" scope="singleton"></bean>
+	<bean id="gossipHandlerRootResource" class="org.beesa.atmosphere.samples.GossipHandler"></bean>
 	
-	
-	
-	<!-- Login manager -->
-	<bean id="loginManager" class="com.mportal.gossip.login.LoginManager"></bean>
-	
-	<!-- Configuration manager -->
-	
-	<bean id="configurationManager" class="com.mportal.gossip.util.ConfigurationManager"></bean>
-	
-	
-	<hz:hazelcast id="hazlecastInstance">
-  <hz:config>
-    <hz:group name="dev" password="password"/>
-    <hz:network port="5701" port-auto-increment="false">
-      <hz:join>
-        <hz:multicast enabled="false"
-                      multicast-group="224.2.2.3"
-                      multicast-port="54327"/>
-        <hz:tcp-ip enabled="true">
-          <hz:members>127.0.0.1</hz:members>
-        </hz:tcp-ip>
-      </hz:join>
-    </hz:network>
-     <hz:map name="userMap"
-            backup-count="2"
-            max-size="0"
-            eviction-percentage="30"
-            read-backup-data="true"
-            eviction-policy="NONE"
-            merge-policy="com.hazelcast.map.merge.PassThroughMergePolicy"/>
-    <hz:map name="conversationMap"
-            backup-count="2"
-            max-size="0"
-            eviction-percentage="30"
-            read-backup-data="true"
-            eviction-policy="NONE"
-            merge-policy="com.hazelcast.map.merge.PassThroughMergePolicy"/>
-   <hz:map name="deviceMap"
-            backup-count="2"
-            max-size="0"
-            eviction-percentage="30"
-            read-backup-data="true"
-            eviction-policy="NONE"
-            merge-policy="com.hazelcast.map.merge.PassThroughMergePolicy"/>
-   <hz:map name="participantMap"
-            backup-count="2"
-            max-size="0"
-            eviction-percentage="30"
-            read-backup-data="true"
-            eviction-policy="NONE"
-            merge-policy="com.hazelcast.map.merge.PassThroughMergePolicy"/>
-  </hz:config>
-</hz:hazelcast>
-
-<bean id="dataManager" class="com.mportal.gossip.util.DataManager"></bean>	
 </beans>

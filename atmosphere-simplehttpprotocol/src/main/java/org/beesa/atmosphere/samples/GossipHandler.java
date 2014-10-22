@@ -20,7 +20,6 @@ import org.atmosphere.cpr.AtmosphereResourceEventListener;
 import org.atmosphere.interceptor.AtmosphereResourceLifecycleInterceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author sarat
@@ -30,7 +29,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Path("/")
 @AtmosphereService(dispatch = false,
 interceptors = {AtmosphereResourceLifecycleInterceptor.class},
-path = "/gossip",
+path = "/ws",
 servlet = "com.sun.jersey.spi.spring.container.servlet.SpringServlet",
  atmosphereConfig="org.atmosphere.websocket.WebSocketProtocol=org.atmosphere.websocket.protocol.SimpleHttpProtocol")
 public class GossipHandler {
